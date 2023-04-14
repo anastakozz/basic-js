@@ -14,40 +14,49 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function transform(arr) {
-  throw new NotImplementedError('Not implemented');
-  // if (Array.isArray(arr) === false) {
-  //   return false;
-  // }
+  console.log(arr);
+    if (Array.isArray(arr) === false) {
+      const e = new Error("'arr' parameter must be an instance of the Array!");
+      throw e;
+      // return false;
+    }
+    const result = [];
+    for (i=0; i<arr.length; i++) {
+      if (arr[i] === '--discard-next'){
+        if (i !== arr.length - 1) {
+          i++;
+        i++;
+        }
+        
+      } else if (arr[i] === '--discard-prev') {
 
-  //   for (i=0; i<i.length; i++) {
-  //     if (arr[i] === '--discard-next'){
-  //       discardNext(i);
-  //     } else if (arr[i] === '--discard-prev') {
-  //       discardPrev(i);
-  //     } else if (arr[i] === '--double-next') {
-  //       doubleNext(i);
-  //     } else if (arr[i] === '--double-prev') {
-  //       doublePrev(i);
-  //     }
-  //   }
+        if (i !== 0){
+          result.pop(); 
+        }
+        
+      } else if (arr[i] === '--double-next') {
+        if (i !== arr.length - 1) {
+          result.push(arr[i+1]);
+        }
+        
+      } else if (arr[i] === '--double-prev') {
 
-  // const discardNext = (index) => {
-  //   const arr2 = arr.splice(index, 2);
-  // }
+        if( i !== 0) {
+          result.push(arr[i-1]);
+        } 
+        
+      } else {
+        result.push(arr[i])
+      }
+    }
+    console.log(result);
+    return result;
+    
 
-  // const discardPrev = () => {
-  //   return arr.splice(index - 1, 2);
-  // }
-
-  // const doubleNext = () => {
-  //   return arr.splice(index, 1, arr[index + 1]);
-  // }
-
-  // const doublePrev = () => {
-  //   return arr. splice(index, 1, index - 1 );
-  // }
+  
 
 }
+transform(['--double-prev', 1, 2, 3]);
 
 module.exports = {
   transform

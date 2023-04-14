@@ -15,12 +15,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 function getSumOfDigits(num) {
   let arr = num.toString().split("").map( item => +item);
   let result = arr.reduce((sum, current) => sum + current, 0);
-  // console.log(arr);
-  // console.log(`${result}`.length);
-  // console.log(typeof result)
   return `${result}`.length === 1 ? result : getSumOfDigits(result);
- 
-  
 }
 getSumOfDigits(567)
 
